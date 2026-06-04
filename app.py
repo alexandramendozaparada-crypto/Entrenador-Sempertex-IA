@@ -22,7 +22,7 @@ except:
 system_prompt = f"Eres el entrenador experto de Sempertex. Responde a los empleados basándote en este manual: {manual_contenido}. Usa un tono profesional, técnico y empático."
 
 model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash',
+    model_name='gemini-2.5-flash',
     system_instruction=system_prompt
 )
 
