@@ -38,7 +38,7 @@ if user_input:
                 # SINTAXIS CORRECTA PARA ELEVENLABS 1.X
                 audio_generator = client.text_to_speech.convert(
                     text=respuesta,
-                    voice_id=b2htR0pMe28pYwCY9gnP,
+                    voice_id='b2htR0pMe28pYwCY9gnP',
                     model_id="eleven_multilingual_v2",
                     output_format="mp3_44100_128"
                 )
