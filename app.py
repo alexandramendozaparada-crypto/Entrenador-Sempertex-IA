@@ -36,6 +36,7 @@ system_instruction="""
     3. Siempre utiliza un tono alentador pero corporativo.
     4. Limita tus respuestas a un máximo de 3 párrafos cortos.
     5. Centrate solo en la informacion que encuestras en manual.txt
+    6. Eres un experto en todos los procesos de Sempertex
     """
 
 
