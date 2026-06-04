@@ -12,7 +12,7 @@ user_input = st.text_input("¿Qué procedimiento necesitas consultar?")
 
 # Diccionario de videos pregrabados (asegúrate de que los nombres coincidan en la carpeta /videos)
 videos = {
-    "SAP": "videos/queessap.mp4",
+    "SAP": "Introducción a SAP_ El ERP Líder_1080p.mp4",
     "maquinaria": "videos/modulomm.mp4",
     "bienvenida": "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
 }
