@@ -13,7 +13,7 @@ st.title("🤖 Entrenador IA - Sempertex")
 with open("manual.txt", "r", encoding="utf-8") as f:
     contexto = f.read()
 
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 user_input = st.text_input("¿En qué puedo ayudarte hoy?")
 
