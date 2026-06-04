@@ -1,47 +1,47 @@
 import streamlit as st
 import google.generativeai as genai
 
-# 1. Configuración
 st.set_page_config(page_title="Entrenador IA Sempertex", layout="wide")
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-model = genai.GenerativeModel(
-    model_name='gemini-2.5-flash',
-    system_instruction="Eres el presentador experto de Sempertex. Responde con un saludo breve."
-)
+model = genai.GenerativeModel(model_name='gemini-2.5-flash')
 
-videos = {
-    "sap": "Introducción a SAP_ El ERP Líder_1080p.mp4",
-    "maquinaria": "modulomm.mp4",
-    "bienvenida": "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
-}
+# 1. Definimos los nombres exactos de tus archivos
+VIDEO_SAP = "Introducción a SAP_ El ERP Líder_1080p.mp4"
+VIDEO_MAQUINARIA = "modulomm.mp4"
+VIDEO_BIENVENIDA = "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
 
 st.title("🏭 Entrenador IA - Sempertex")
 
-# Inicializamos el estado del video si no existe
-if 'categoria' not in st.session_state:
-    st.session_state.categoria = "bienvenida"
-    st.session_state.respuesta = "¡Bienvenido! ¿Cómo puedo ayudarte hoy?"
+# Inicializar estado
+if 'video_actual' not in st.session_state:
+    st.session_state.video_actual = VIDEO_BIENVENIDA
+    st.session_state.texto = "¡Bienvenido! ¿Cómo puedo ayudarte hoy?"
 
-# 2. Entrada del usuario
 user_input = st.text_input("¿Qué procedimiento necesitas consultar?")
 
-# 3. Lógica: Solo actualizamos si el usuario escribe algo nuevo
 if user_input:
-    with st.spinner('Procesando...'):
-        prompt_cat = f"Clasifica '{user_input}' en 'sap', 'maquinaria' o 'bienvenida'. Solo una palabra."
-        st.session_state.categoria = model.generate_content(prompt_cat).text.strip().lower()
-        st.session_state.respuesta = model.generate_content(f"Saluda brevemente sobre: {user_input}").text
+    with st.spinner('Analizando consulta...'):
+        # Clasificación forzada
+        prompt = f"Clasifica la intención de esta pregunta: '{user_input}'. Responde SOLO con una de estas tres palabras: 'sap', 'maquinaria' o 'bienvenida'."
+        categoria = model.generate_content(prompt).text.strip().lower()
+        
+        # Lógica explícita (Más segura que el diccionario)
+        if 'sap' in categoria:
+            st.session_state.video_actual = VIDEO_SAP
+        elif 'maquinaria' in categoria:
+            st.session_state.video_actual = VIDEO_MAQUINARIA
+        else:
+            st.session_state.video_actual = VIDEO_BIENVENIDA
+            
+        st.session_state.texto = model.generate_content(f"Saluda brevemente sobre: {user_input}").text
 
-# 4. Renderizado
+# Renderizado
 col1, col2 = st.columns(2)
-
 with col1:
     st.subheader("Mentor Virtual")
-    # El video siempre toma el valor actual del estado
-    video_path = videos.get(st.session_state.categoria, videos["bienvenida"])
-    st.video(video_path)
+    st.video(st.session_state.video_actual)
 
 with col2:
     st.subheader("Introducción")
-    st.write(st.session_state.respuesta)
+    st.write(st.session_state.texto)
