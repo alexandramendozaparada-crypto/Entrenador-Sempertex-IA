@@ -3,7 +3,7 @@ import google.generativeai as genai
 import os
 
 # Configuración (Usa los Secrets de Streamlit para no subir tu API KEY a GitHub)
-genai.configure(api_key=st.secrets["AQ.Ab8RN6JYhwUnH5le9on4OwEGbg1-iyINSb2xMXuRS-xAZYXIxA"])
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
 st.set_page_config(page_title="Entrenador IA Sempertex", page_icon="🤖")
 
