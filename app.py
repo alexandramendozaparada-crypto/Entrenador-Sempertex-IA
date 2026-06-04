@@ -1,14 +1,12 @@
 import streamlit as st
 import google.generativeai as genai
 from elevenlabs.client import ElevenLabs
-from elevenlabs import generate, save
 
 # 1. Configuración de página
 st.set_page_config(page_title="Entrenador IA Sempertex", page_icon="🏭")
 
-# 2. Configuración de APIs (Usando Secrets)
+# 2. Configuración de APIs (Usa los Secrets de Streamlit)
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-# Inicializamos el cliente de ElevenLabs
 client = ElevenLabs(api_key=st.secrets["ELEVENLABS_API_KEY"])
 
 # 3. Cargar conocimiento
@@ -40,19 +38,19 @@ if user_input:
         
         st.write(f"**Entrenador:** {respuesta}")
         
-        # B. Generar voz humana con ElevenLabs
+        # B. Generar voz humana con ElevenLabs (Sintaxis actualizada 1.x+)
         with st.spinner('Generando voz humana...'):
             try:
-                # Usamos la sintaxis estable de la versión 0.3.0
-                audio = generate(
+                audio_generator = client.generate(
                     text=respuesta,
-                    voice="sofia",
-                    model="eleven_multilingual_v2",
-                    api_key=st.secrets["ELEVENLABS_API_KEY"]
+                    voice="b2htR0pMe28pYwCY9gnP",
+                    model="eleven_multilingual_v2"
                 )
                 
                 # Guardar el audio generado
-                save(audio, "respuesta.mp3")
+                with open("respuesta.mp3", "wb") as f:
+                    for chunk in audio_generator:
+                        f.write(chunk)
                 
                 # C. Reproducir audio
                 st.audio("respuesta.mp3", format="audio/mp3", autoplay=True)
