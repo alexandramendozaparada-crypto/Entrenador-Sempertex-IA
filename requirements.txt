@@ -1,3 +1,4 @@
-streamlit
-google-generativeai
-elevenlabs==0.3.0
+import streamlit as st
+import google.generativeai as genai
+import elevenlabs
+from elevenlabs import generate, save
