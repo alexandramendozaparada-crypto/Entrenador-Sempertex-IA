@@ -8,7 +8,7 @@ model = genai.GenerativeModel(model_name='gemini-2.5-flash')
 
 # 1. Definimos los nombres exactos de tus archivos
 VIDEO_SAP = "Introducción a SAP_ El ERP Líder_1080p.mp4"
-VIDEO_MAQUINARIA = "modulomm.mp4"
+VIDEO_MODULOMMSAP = "introduccion-a-sap-modulo-mm-1080p-caption.mp4"
 VIDEO_BIENVENIDA = "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
 
 st.title("🏭 Entrenador IA - Sempertex")
