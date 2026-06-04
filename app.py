@@ -37,7 +37,7 @@ system_instruction="""
     4. Limita tus respuestas a un máximo de 3 párrafos cortos.
     5. Centrate solo en la informacion que encuestras en manual.txt
     """
-)
+
 
 VIDEOS = {
     "sap": "Introducción a SAP_ El ERP Líder_1080p.mp4",
