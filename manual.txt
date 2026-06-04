@@ -1,0 +1,71 @@
+1.	¿Qué es SAP?
+SAP (que significa Sistemas, Aplicaciones y Productos en Procesamiento de Datos) es un software empresarial (específicamente un sistema ERP) líder en el mundo, utilizado por miles de compañías para gestionar de manera integral sus procesos de negocio.
+De acuerdo con las fuentes, los aspectos clave que definen a SAP son:
+•	Gestión Centralizada: Permite administrar una amplia variedad de funciones corporativas en un solo sistema, incluyendo contabilidad, finanzas, recursos humanos, gestión de inventarios, ventas y compras.
+•	Estructura por Módulos: El sistema se organiza en módulos especializados que cubren áreas específicas de la empresa. Por ejemplo, el módulo MM (Gestión de Materiales) se encarga de la cadena de suministro y adquisiciones, mientras que otros módulos como FI (Finanzas), SD (Ventas) y PP (Producción) gestionan sus respectivas áreas.
+•	Integración: Una de las mayores potencias de SAP es que sus módulos están altamente integrados entre sí. Por ejemplo, una entrada de mercancías en el módulo de logística (MM) genera automáticamente un impacto contable en el módulo de finanzas (FI).
+•	Uso de Transacciones: Para interactuar con el sistema y realizar tareas específicas, los usuarios utilizan códigos alfanuméricos llamados transacciones (como MM01 para crear materiales o ME21N para pedidos). Estos códigos se ingresan en una barra de comandos dentro de la interfaz de usuario para acceder a funciones y datos específicos.
+•	Optimización Operativa: El objetivo principal de implementar SAP es mejorar la eficiencia operativa, reducir costos y facilitar la toma de decisiones precisas al contar con información en tiempo real sobre la cadena de suministro y los recursos de la empresa.
+En resumen, es una herramienta tecnológica fundamental para que las organizaciones manejen su ciclo completo de operación, desde la necesidad inicial de un recurso hasta el pago final a proveedores (proceso conocido como Procure-to-Pay o P2P)
+
+Si quieres ver la versión video: https://youtu.be/tuvsINmh9Ls
+
+2.	¿Qué es el módulo MM?
+El módulo MM (que significa Gestión de Materiales o Materials Management) es una pieza fundamental del sistema SAP ERP, diseñada para la gestión eficiente de los procesos de adquisición y suministro en una organización.
+Sus funciones y características principales, según las fuentes, son las siguientes:
+1. Objetivo y Alcance
+Este módulo se encarga de dar soporte a todas las fases de la gestión de materiales, optimizando la cadena de suministro desde que surge una necesidad hasta que se completa el pago. Su alcance incluye:
+•	Planificación de necesidades y control: Determinar qué se necesita y cuándo.
+•	Compras: Gestión de solicitudes de pedido, pedidos de compra y relación con proveedores.
+•	Entrada de mercancías: Registro de la recepción física de los bienes en el almacén.
+•	Gestión de stocks: Control y rastreo de todos los movimientos de inventario, como entradas, salidas, devoluciones y traspasos.
+•	Verificación de facturas: Verificación cruzada entre la factura del proveedor, el pedido de compra y la recepción de mercancías.
+
+Transacciones módulo MM
+a.	Transacción MM01: Crear Maestro de Materiales
+Esta transacción permite registrar un nuevo material en el catálogo de la empresa para que pueda ser utilizado en compras, ventas o inventarios.
+•	Acceso: Escribe MM01 en el campo de comandos y presiona Enter.
+•	Datos Iniciales:
+1.	Ramo: Selecciona el sector industrial al que pertenece (ej. Comercio).
+2.	Tipo de material: Define su naturaleza (ej. Material general o Mercaderías).
+3.	Copiar desde: Puedes usar un código de material existente como referencia para agilizar el llenado de datos.
+•	Selección de Vistas: Al dar clic en continuar, el sistema pedirá seleccionar las "vistas" o pestañas que se desea crear (ej. Datos base 1, Compras, Datos generales centro/almacén, Contabilidad 1).
+•	Niveles de Organización: Ingresa el Centro (ej. 1000) y el Almacén (ej. 001) para los cuales será válido el material.
+•	Carga de Información:
+1.	Datos Base: Ingresa una descripción breve, unidad de medida base (ej. unidades, kilogramos) y grupo de artículos.
+2.	Compras: Define el Grupo de compras responsable y la clave de valores de compra.
+3.	Contabilidad: Es obligatorio asignar una Categoría de valoración (para el enlace con la cuenta contable) y un precio (estándar o variable).
+•	Finalización: Haz clic en el icono de Grabar (disquete). El sistema generará y confirmará el código del nuevo material en la barra de mensajes inferior.
+Para aprender a ejecutar la transacción MM01, por favor mira este video tutorial: https://youtu.be/d6bDtdQoa3o
+
+Transacción ME21N: Crear Pedido de Compra
+El pedido es el documento formal mediante el cual se solicitan bienes o servicios a un proveedor, estableciendo condiciones legales y comerciales.
+•	Acceso: Escribe ME21N en el campo de comandos.
+•	Cabecera del Documento:
+1.	Tipo de pedido: Selecciona la clase de documento (ej. NB - Pedido estándar).
+2.	Proveedor: Ingresa el código del proveedor (puedes buscarlo por RUC o nombre con F4).
+3.	Datos de organización: Completa la Organización de compras, el Grupo de compras y la Sociedad responsable.
+•	Detalle de Posiciones:
+1.	Ingresa el código del Material, la Cantidad solicitada y el Precio neto.
+2.	Especifica el Centro y el Almacén donde se debe entregar la mercancía.
+3.	Si se trata de un gasto directo (como servicios), utiliza el tipo de imputación "K" para asignar un centro de coste o elemento PEP.
+•	Verificación: Antes de guardar, presiona el botón Verificar para asegurarte de que no falten datos obligatorios o existan errores de presupuesto.
+•	Finalización: Haz clic en Grabar. El sistema asignará un número de documento que servirá para el seguimiento del proceso.
+Para aprender a ejecutar la transacción ME21N, por favor mira este video tutorial: https://youtu.be/NU8nmO6FYZE
+
+Transacción MIGO: Entrada de Mercancías
+Esta transacción se utiliza para registrar la llegada física de los materiales al almacén, actualizando automáticamente el stock y generando los asientos contables correspondientes.
+•	Acceso: Escribe MIGO en la pantalla de acceso fácil de SAP.
+•	Configuración de la Operación:
+1.	En el primer menú desplegable, selecciona A1 - Entrada de mercancías.
+2.	En el segundo menú, selecciona R01 - Pedido de compras.
+3.	Ingresa el Número del pedido creado previamente en la ME21N y presiona Enter.
+•	Datos de Cabecera: Verifica la Fecha de documento y la Fecha de contabilización. Es recomendable ingresar el número de la Nota de entrega o albarán del proveedor para trazabilidad.
+•	Verificación de Posiciones:
+1.	Revisa en la pestaña de Cantidad que lo recibido coincida con lo físico.
+2.	Asegúrate de que el Tipo de movimiento sea el 101 (entrada para pedido en almacén).
+3.	Marca obligatoriamente la casilla de verificación Posición OK para cada línea que desees procesar.
+•	Control Final: Haz clic en el botón Verificar en la parte superior. Si el sistema muestra el mensaje "El documento es conforme", procede al siguiente paso.
+•	Finalización: Presiona Contabilizar (o Grabar). El sistema generará un número de documento de material que confirma el incremento del inventario.
+Para aprender a ejecutar la transacción MIGO, por favor mira este video tutorial: https://youtu.be/bRBgqTWj33w
+
