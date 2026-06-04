@@ -36,7 +36,7 @@ VIDEOS = {
     "bienvenida": "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
 }
 
-st.title("unnamed.jpg" "Entrenador IA - Sempertex")
+st.title(<img src="unnamed.jpg" /> "Entrenador IA - Sempertex")
 
 user_input = st.text_input("¿Qué procedimiento necesitas consultar?")
 
