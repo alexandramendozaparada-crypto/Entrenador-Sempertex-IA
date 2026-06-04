@@ -14,7 +14,7 @@ user_input = st.text_input("¿Qué procedimiento necesitas consultar?")
 videos = {
     "SAP": "videos/queessap.mp4",
     "maquinaria": "videos/modulomm.mp4",
-    "general": "videos/bienvenida.mp4"
+    "bienvenida": "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
 }
 
 if user_input:
