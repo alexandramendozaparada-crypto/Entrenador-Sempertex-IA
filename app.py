@@ -6,38 +6,39 @@ genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
 model = genai.GenerativeModel(model_name='gemini-2.5-flash')
 
-# 1. Archivos (Nombres exactos)
+# 1. Nombres exactos de tus archivos de video
 VIDEOS = {
     "sap": "Introducción a SAP_ El ERP Líder_1080p.mp4",
-    "maquinaria": "modulomm.mp4",
+    "mm": "introduccion-a-sap-modulo-mm-1080p-caption.mp4",
     "bienvenida": "Bienvenida Sempertex - Asistente IA_1080p_caption.mp4"
 }
 
 st.title("🏭 Entrenador IA - Sempertex")
 
-# 2. Lógica simple sin bucles
 user_input = st.text_input("¿Qué procedimiento necesitas consultar?")
 
-# Valores por defecto
+# 2. Lógica de selección con prioridad
+input_lower = user_input.lower()
 video_actual = VIDEOS["bienvenida"]
 texto_actual = "¡Bienvenido! ¿Cómo puedo ayudarte hoy?"
 
 if user_input:
-    # Clasificación rápida
-    prompt = f"De las opciones: 'sap', 'maquinaria', 'bienvenida'. ¿A qué pertenece: '{user_input}'? Solo responde la palabra."
-    cat = model.generate_content(prompt).text.strip().lower()
-    
-    # Asignación directa
-    if 'sap' in cat:
+    # Prioridad: Si menciona 'mm', va directo al video de MM
+    if 'mm' in input_lower:
+        video_actual = VIDEOS["mm"]
+        tema_ia = "el módulo SAP MM"
+    # Si menciona 'sap' (pero no 'mm'), va al video general de SAP
+    elif 'sap' in input_lower:
         video_actual = VIDEOS["sap"]
-    elif 'maquinaria' in cat or 'mm' in cat:
-        video_actual = VIDEOS["maquinaria"]
+        tema_ia = "SAP"
+    # Default
     else:
         video_actual = VIDEOS["bienvenida"]
-        
-    texto_actual = model.generate_content(f"Saluda y presenta brevemente el tema: {user_input}").text
+        tema_ia = user_input
+    
+    texto_actual = model.generate_content(f"Saluda y presenta brevemente el tema: {tema_ia}").text
 
-# 3. Renderizado directo
+# 3. Renderizado
 col1, col2 = st.columns(2)
 with col1:
     st.subheader("Mentor Virtual")
